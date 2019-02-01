@@ -1,0 +1,26 @@
+<h2>{{ title }}</h2>
+<div>
+    <input [(ngModel)]="newTodo" />
+    <button class="btn btn-primary" (click)="onSave()">Add Todo</button>
+</div>
+<table border="1" *ngIf="todoList.length > 0">
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Delete</th>
+        <th>Update</th>
+    </tr>
+    
+    <tr *ngFor="let item of todoList">
+      <td>{{item.id}}</td>
+      <td><input [value]="item.title"></td>
+      <td>{{(item.status == 0) ? 'Not Completed': 'Completed'}}</td>
+      <td><button (click)="delete(item.id)">delete</button></td>
+      <td><button (click)="update(item)">Update</button></td>
+    </tr>
+</table>
+
+<div *ngIf="todoList.length == 0">
+    No items
+</div>
