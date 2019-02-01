@@ -3,7 +3,7 @@
     <input [(ngModel)]="newTodo" />
     <button class="btn btn-primary" (click)="onSave()">Add Todo</button>
 </div>
-<table border="1" *ngIf="todoList.length > 0">
+<table border="1" *ngIf="todoList.length > 0; else noItems">
     <tr>
         <th>ID</th>
         <th>Title</th>
@@ -21,6 +21,6 @@
     </tr>
 </table>
 
-<div *ngIf="todoList.length == 0">
+<ng-template #noItems>
     No items
-</div>
+</ng-template>
