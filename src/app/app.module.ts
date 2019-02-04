@@ -12,6 +12,7 @@ import { TodoServices } from './todo/todos.service';
 import { from } from 'rxjs';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { PanelComponent } from './panel/panel.component';
+import { ContactFormComponent } from './contact-form/contact-form.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PanelComponent } from './panel/panel.component';
     CourseComponent,
     TodoComponent,
     FavoriteComponent,
-    PanelComponent
+    PanelComponent,
+    ContactFormComponent
   ],
   imports: [
     BrowserModule,
