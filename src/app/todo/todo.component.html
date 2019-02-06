@@ -25,10 +25,10 @@
         </tr>
         <tr *ngFor="let item of todoList">
         <td>{{item.id}}</td>
-        <td><input [value]="item.title"></td>
+        <td>{{item.title}}</td>
         <td>{{(item.status == 0) ? 'Not Completed': 'Completed'}}</td>
         <td><button (click)="delete(item.id)">delete</button></td>
-        <td><button (click)="update(item)">Update</button></td>
+        <td><a [routerLink]="['/todo-update', item.id]">Update</a></td>
         </tr>
     </table>
 </ng-template>
