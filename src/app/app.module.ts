@@ -11,6 +11,7 @@ import { CourseComponent } from './course/course.component';
 import { CourseService } from './course/courses.service';
 import { TodoComponent } from './todo/todo.component';
 import { TodoServices } from './todo/todos.service';
+import { TodoAddComponent } from './todo/todo.add.component';
 import { from } from 'rxjs';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { PanelComponent } from './panel/panel.component';
@@ -29,6 +30,7 @@ import { GithubFollowersComponent } from './github-followers/github-followers.co
     CoursesComponent,
     CourseComponent,
     TodoComponent,
+    TodoAddComponent,
     SignupFormComponent,
     FavoriteComponent,
     PanelComponent,
@@ -49,6 +51,7 @@ import { GithubFollowersComponent } from './github-followers/github-followers.co
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'todo', component: TodoComponent },
+      { path: 'todo-add', component: TodoAddComponent },
       { path: 'followers/:username', component: GithubProfileComponent },
       { path: 'followers', component: GithubFollowersComponent },
       { path: 'posts', component: PostsComponent },

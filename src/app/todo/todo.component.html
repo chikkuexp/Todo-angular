@@ -3,13 +3,15 @@
     <div class="col-md-3"><h2>{{ title }}</h2></div>
 </div>
 <div class="row">
-    <div class="col-md-8">
-        <div class="row">
+    <!--<div class="col-md-8">
+       <div class="row">
             <div class="col-md-6"><label for="firstName">First Name</label></div>
             <div class="col-md-6"><input [(ngModel)]="newTodo" /></div> 
-        </div>
+        </div> 
     </div>
     <div class="col-md-4"><button class="btn btn-primary" (click)="onSave()">Add Todo</button></div>
+-->
+<a class="btn btn-primary" routerLink="/todo-add">Add Todo</a>
 </div>
 <div class="row" *ngIf="todoList.length > 0; then tableTSodoList else noItems"></div>
 <ng-template #tableTSodoList>
