@@ -23,8 +23,8 @@ export class TodoAddComponent implements OnInit {
         ];
     }
 
-    addTodo(){
-        this.service.addTodo(3, this.title, this.status.id);
+    addTodo(f){
+        this.service.addTodo(3, f.value.title, f.value.status.id);
         console.log(this.service.getTodos());
       }
 
