@@ -12,6 +12,7 @@ import { CourseService } from './course/courses.service';
 import { TodoComponent } from './todo/todo.component';
 import { TodoServices } from './todo/todos.service';
 import { TodoAddComponent } from './todo/todo.add.component';
+import { TodoUpdateComponent } from './todo/todo.update.component';
 import { from } from 'rxjs';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { PanelComponent } from './panel/panel.component';
@@ -31,6 +32,7 @@ import { GithubFollowersComponent } from './github-followers/github-followers.co
     CourseComponent,
     TodoComponent,
     TodoAddComponent,
+    TodoUpdateComponent,
     SignupFormComponent,
     FavoriteComponent,
     PanelComponent,
@@ -52,6 +54,7 @@ import { GithubFollowersComponent } from './github-followers/github-followers.co
       { path: '', component: HomeComponent },
       { path: 'todo', component: TodoComponent },
       { path: 'todo-add', component: TodoAddComponent },
+      { path: 'todo-update/:id', component: TodoUpdateComponent},
       { path: 'followers/:username', component: GithubProfileComponent },
       { path: 'followers', component: GithubFollowersComponent },
       { path: 'posts', component: PostsComponent },
