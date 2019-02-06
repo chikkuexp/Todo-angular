@@ -11,7 +11,7 @@ import { TodoServices } from './todos.service';
 
 export class TodoAddComponent implements OnInit {
     private title:string;
-    private status:number;
+    private status:any;
     statusList: any;
 
     constructor(private service: TodoServices){
@@ -24,7 +24,7 @@ export class TodoAddComponent implements OnInit {
     }
 
     addTodo(){
-        this.service.addTodo(3, this.title, 0);
+        this.service.addTodo(3, this.title, this.status.id);
         console.log(this.service.getTodos());
       }
 
