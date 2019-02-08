@@ -2,9 +2,11 @@ import { identifierModuleUrl } from '@angular/compiler';
 
 export class TodoServices{
     private todos: ToDo[];
+    private autoIncrement: number;
 
     constructor(){
         this.todos = [];
+        this.autoIncrement = 1;
     }
 
     getTodos(){
@@ -12,8 +14,9 @@ export class TodoServices{
     }
 
     addTodo(id: number, title: string, status:number){
-        let todo = new ToDo(id, title, status);
-        this.todos.push(todo)
+        let todo = new ToDo(this.autoIncrement, title, status);
+        this.todos.push(todo);
+        this.autoIncrement++;
     }
 
     deleteTodo(id: number){
@@ -22,6 +25,15 @@ export class TodoServices{
                 this.todos.splice(i, 1);
             }
         }
+    }
+
+    getTodo(id: number){
+        for(let i = 0; i < this.todos.length; i++){
+            if(this.todos[i].ID == id){
+                return this.todos[i];
+            }
+        }
+        return new ToDo(0, '', 0);
     }
 }
 
