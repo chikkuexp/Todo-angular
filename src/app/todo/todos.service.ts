@@ -35,6 +35,15 @@ export class TodoServices{
         }
         return new ToDo(0, '', 0);
     }
+
+    updateTodo(id:number, title:string, status:number){
+        for(let i = 0; i < this.todos.length; i++){
+            if(this.todos[i].ID == id){
+                this.todos[i].Title = title;
+                this.todos[i].Status = status;
+            }
+        }
+    }
 }
 
 class ToDo {
@@ -50,5 +59,13 @@ class ToDo {
 
     get Status(){
         return this.status;
+    }
+
+    set Title(title:string){
+        this.title = title;
+    }
+
+    set Status(status:number){
+        this.status = status;
     }
 }

@@ -40,10 +40,11 @@ export class TodoUpdateComponent implements OnInit {
         ];
     }
 
-    addTodo(f){
-        this.service.addTodo(3, f.value.title, f.value.status.id);
-        console.log(this.service.getTodos());
-      }
+    update(){
+        let title = this.form.get('title').value;
+        let status = this.form.get('status').value;
+        this.service.updateTodo(this.id, title, status);
+    }
 
     ngOnInit() {
     }

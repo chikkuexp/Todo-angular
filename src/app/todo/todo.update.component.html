@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header"><strong>Edit Todo</strong></div>
     <div class="card-body">
-        <form [formGroup]="form">
+        <form [formGroup]="form" (submit)="update()">
             <div class="form-group">
                 <label for="title">Title</label>
                 <input 
