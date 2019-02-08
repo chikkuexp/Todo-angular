@@ -21,6 +21,7 @@ export class TodoUpdateComponent implements OnInit {
         this.route.paramMap.subscribe(params => {
             this.id = +params.get('id');
             let todo = service.getTodo(this.id);
+            
             console.log(todo);
         });
 
