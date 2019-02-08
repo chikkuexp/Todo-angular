@@ -1,6 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { TodoServices } from './todos.service';
 import { ActivatedRoute } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'todo-add',
@@ -17,12 +18,18 @@ export class TodoUpdateComponent implements OnInit {
     statusList: any;
     private message = "";
 
+    private form = new FormGroup({
+        'title' : new FormControl(),
+        'status' : new FormControl()
+    });
+
     constructor(private route:ActivatedRoute, private service: TodoServices){
         this.route.paramMap.subscribe(params => {
             this.id = +params.get('id');
             let todo = service.getTodo(this.id);
             
-            console.log(todo);
+            this.form.controls['title'].setValue(todo.Title);
+            this.form.controls['status'].setValue(todo.Status, {onlySelf: true});
         });
 
         this.title = "";

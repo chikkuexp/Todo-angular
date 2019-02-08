@@ -1,16 +1,15 @@
 <div class="card">
     <div class="card-header"><strong>Edit Todo</strong></div>
     <div class="card-body">
-        <form #f="ngForm" (ngSubmit)="addTodo(f)">
+        <form [formGroup]="form">
             <div class="form-group">
                 <label for="title">Title</label>
                 <input 
+                    formControlName="title"
                     required
                     id="title" 
                     name="title"
                     type="text" 
-                    ngModel
-                    #title="ngModel"
                     class="form-control">
                 <div *ngIf="title.touched && !title.valid" class="alert alert-danger">
                     Title required
@@ -18,16 +17,21 @@
             </div>
             <div class="form-group">
                 <label for="status">Status</label>
-                <select required ngModel name="status" id="status" #status="ngModel" class="form-control">
+                <select 
+                    formControlName="status"
+                    required
+                    name="status"
+                    id="status" 
+                    class="form-control">
                     <option value=""></option>
-                    <option *ngFor="let item of statusList" [ngValue]="item">{{item.name}}</option>
+                    <option *ngFor="let item of statusList" [ngValue]="item.id">{{item.name}}</option>
                 </select>
                 <div *ngIf="status.touched && !status.valid" class="alert alert-danger">
                     Status required
                 </div>
             </div>
             <div class="form-group">
-                <button class="btn btn-primary" [disabled]="!f.valid" type="submit">Update</button>
+                <button class="btn btn-primary" type="submit">Update</button>
             </div>
         </form>
                 

@@ -43,4 +43,12 @@ class ToDo {
     get ID(){
         return this.id;
     }
+
+    get Title(){
+        return this.title;
+    }
+
+    get Status(){
+        return this.status;
+    }
 }
