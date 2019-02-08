@@ -13,6 +13,7 @@ export class TodoAddComponent implements OnInit {
     private title:string;
     private status:any;
     statusList: any;
+    private message = "";
 
     constructor(private service: TodoServices){
         this.title = "";
@@ -26,6 +27,8 @@ export class TodoAddComponent implements OnInit {
     addTodo(f){
         this.service.addTodo(3, f.value.title, f.value.status.id);
         console.log(this.service.getTodos());
+        f.reset();
+        this.message = "Todo added successfully!"
       }
 
     ngOnInit() {

@@ -1,39 +1,30 @@
-
-<div class="row">
-    <div class="col-md-3"><h2>{{ title }}</h2></div>
+<div class="card">
+    <div class="card-header"><strong>{{ title }}</strong><a style="float:right;" class="btn btn-primary" routerLink="/todo-add">Add Todo</a></div>
+    <div class="card-body">
+        <div class="row" *ngIf="todoList.length > 0; then tableTSodoList else noItems"></div>
+        <ng-template #tableTSodoList>
+            <table class="table table-bordered">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Delete</th>
+                    <th scope="col">Update</th>
+                </tr>
+                <tr *ngFor="let item of todoList">
+                <td>{{item.id}}</td>
+                <td>{{item.title}}</td>
+                <td>{{(item.status == 0) ? 'Not Completed': 'Completed'}}</td>
+                <td><button (click)="delete(item.id)">delete</button></td>
+                <td><a [routerLink]="['/todo-update', item.id]">Update</a></td>
+                </tr>
+            </table>
+        </ng-template>
+        
+        <ng-template #noItems>
+            <div class="alert alert-warning" *ngIf="message != ''">
+                <strong>No Items!</strong>
+            </div>
+        </ng-template>
+    </div> 
 </div>
-<div class="row">
-    <!--<div class="col-md-8">
-       <div class="row">
-            <div class="col-md-6"><label for="firstName">First Name</label></div>
-            <div class="col-md-6"><input [(ngModel)]="newTodo" /></div> 
-        </div> 
-    </div>
-    <div class="col-md-4"><button class="btn btn-primary" (click)="onSave()">Add Todo</button></div>
--->
-<a class="btn btn-primary" routerLink="/todo-add">Add Todo</a>
-</div>
-<div class="row" *ngIf="todoList.length > 0; then tableTSodoList else noItems"></div>
-<ng-template #tableTSodoList>
-    <table class="table table-bordered">
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Title</th>
-            <th scope="col">Status</th>
-            <th scope="col">Delete</th>
-            <th scope="col">Update</th>
-        </tr>
-        <tr *ngFor="let item of todoList">
-        <td>{{item.id}}</td>
-        <td>{{item.title}}</td>
-        <td>{{(item.status == 0) ? 'Not Completed': 'Completed'}}</td>
-        <td><button (click)="delete(item.id)">delete</button></td>
-        <td><a [routerLink]="['/todo-update', item.id]">Update</a></td>
-        </tr>
-    </table>
-</ng-template>
-
-<form></form>
-<ng-template #noItems>
-    No items
-</ng-template>

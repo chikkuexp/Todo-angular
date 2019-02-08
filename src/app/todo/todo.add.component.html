@@ -1,28 +1,40 @@
-<h2>Todo Add</h2>
-<form #f="ngForm" (ngSubmit)="addTodo(f)">
-    <div class="form-group">
-        <label for="title">Title</label>
-        <input 
-            required
-            id="title" 
-            name="title"
-            type="text" 
-            ngModel
-            #title="ngModel"
-            class="form-control">
-        <div *ngIf="title.touched && !title.valid" class="alert alert-danger">
-            Title required
+<div class="card">
+    <div class="card-header"><strong>Todo Add</strong></div>
+    <div class="card-body">
+        <form #f="ngForm" (ngSubmit)="addTodo(f)">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input 
+                    required
+                    id="title" 
+                    name="title"
+                    type="text" 
+                    ngModel
+                    #title="ngModel"
+                    class="form-control">
+                <div *ngIf="title.touched && !title.valid" class="alert alert-danger">
+                    Title required
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select required ngModel name="status" id="status" #status="ngModel" class="form-control">
+                    <option value=""></option>
+                    <option *ngFor="let item of statusList" [ngValue]="item">{{item.name}}</option>
+                </select>
+                <div *ngIf="status.touched && !status.valid" class="alert alert-danger">
+                    Status required
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" [disabled]="!f.valid" type="submit">Add</button>
+            </div>
+        </form>
+                
+    </div> 
+    <div class="card-footer">
+        <div class="alert alert-success" *ngIf="message != ''">
+            <strong>Success!</strong> {{message}}
         </div>
     </div>
-    <div class="form-group">
-        <label for="status">Status</label>
-        <select required ngModel name="status" id="status" #status="ngModel" class="form-control">
-          <option value=""></option>
-          <option *ngFor="let item of statusList" [ngValue]="item">{{item.name}}</option>
-        </select>
-        <div *ngIf="status.touched && !status.valid" class="alert alert-danger">
-            Status required
-        </div>
-      </div>
-    <button class="btn btn-primary" [disabled]="!f.valid" type="submit">Add</button>
-</form>
+</div>
