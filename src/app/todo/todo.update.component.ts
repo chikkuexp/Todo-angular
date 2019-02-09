@@ -40,6 +40,7 @@ export class TodoUpdateComponent implements OnInit {
         let title = this.form.get('title').value;
         let status = this.form.get('status').value;
         this.service.updateTodo(this.id, title, status);
+        this.message = "Todo updated successfully!"
     }
 
     get title(){
@@ -48,6 +49,10 @@ export class TodoUpdateComponent implements OnInit {
 
     get status(){
         return this.form.get('status');
+    }
+
+    isValid(){
+        return this.form.get('title').valid && this.form.get('status').valid;
     }
     
     ngOnInit() {
