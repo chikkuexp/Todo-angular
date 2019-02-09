@@ -1,5 +1,5 @@
 <div class="card">
-    <div class="card-header"><strong>{{ title }}</strong><a style="float:right;" class="btn btn-primary" routerLink="/todo-add">Add Todo</a></div>
+    <div class="card-header"><strong>{{ title }}</strong><a style="float:right;" class="btn btn-primary" routerLink="/todo/add">Add Todo</a></div>
     <div class="card-body">
         <div class="row" *ngIf="todoList.length > 0; then tableTSodoList else noItems"></div>
         <ng-template #tableTSodoList>
@@ -16,7 +16,7 @@
                 <td>{{item.title}}</td>
                 <td>{{(item.status == 0) ? 'Not Completed': 'Completed'}}</td>
                 <td><button type="button" class="btn btn-danger" (click)="delete(item.id)">Delete</button></td>
-                <td><a class="btn btn-primary" [routerLink]="['/todo-update', item.id]">Update</a></td>
+                <td><a class="btn btn-primary" [routerLink]="['/todo/update', item.id]">Update</a></td>
                 </tr>
             </table>
         </ng-template>

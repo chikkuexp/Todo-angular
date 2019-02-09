@@ -17,9 +17,6 @@ export class TodoComponent implements OnInit {
   private autoIncrement : number;
 
   constructor(private service: TodoServices) {
-    // this.service.addTodo(1, "This is the first todo", 0);
-    // this.service.addTodo(2, "This is the second todo", 1);
-
     this.newTodo = "";
     this.autoIncrement = 3;
     this.todoList = service.getTodos();

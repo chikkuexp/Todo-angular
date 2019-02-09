@@ -53,8 +53,8 @@ import { GithubFollowersComponent } from './github-followers/github-followers.co
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'todo', component: TodoComponent },
-      { path: 'todo-add', component: TodoAddComponent },
-      { path: 'todo-update/:id', component: TodoUpdateComponent},
+      { path: 'todo/add', component: TodoAddComponent },
+      { path: 'todo/update/:id', component: TodoUpdateComponent},
       { path: 'followers/:username', component: GithubProfileComponent },
       { path: 'followers', component: GithubFollowersComponent },
       { path: 'posts', component: PostsComponent },
