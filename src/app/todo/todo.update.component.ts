@@ -1,7 +1,8 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { TodoServices } from './todos.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Observable, interval } from 'rxjs';
 
 @Component({
   selector: 'todo-add',
@@ -15,13 +16,14 @@ export class TodoUpdateComponent implements OnInit {
     private id:number;
     statusList: any;
     private message = "";
+    private timerSubsciption;
 
     private form = new FormGroup({
         'title' : new FormControl('', [Validators.required]),
         'status' : new FormControl('', Validators.required)
     });
 
-    constructor(private route:ActivatedRoute, private service: TodoServices){
+    constructor(private router:Router, private route:ActivatedRoute, private service: TodoServices){
         this.route.paramMap.subscribe(params => {
             this.id = +params.get('id');
             let todo = service.getTodo(this.id);
@@ -40,7 +42,23 @@ export class TodoUpdateComponent implements OnInit {
         let title = this.form.get('title').value;
         let status = this.form.get('status').value;
         this.service.updateTodo(this.id, title, status);
-        this.message = "Todo updated successfully!"
+        this.message = "Todo updated successfully!";
+
+        this.timerSubsciption = interval(2000).subscribe(
+            () => {
+                this.router.navigate(['/todo'])
+            },
+            (error: any) => {
+                console.log('error');
+            },
+            () => {
+                console.log('observable completed !');
+            }
+        );
+    }
+
+    redirect(){
+        this.router.navigate(['/todo']);
     }
 
     get title(){
@@ -56,5 +74,11 @@ export class TodoUpdateComponent implements OnInit {
     }
     
     ngOnInit() {
+    }
+
+    ngOnDestroy(): void {
+        //Called once, before the instance is destroyed.
+        //Add 'implements OnDestroy' to the class.
+        this.timerSubsciption.unsubscribe();
     }
 }

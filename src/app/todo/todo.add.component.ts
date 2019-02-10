@@ -1,5 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { TodoServices } from './todos.service';
+import { Router } from '@angular/router';
+import { Observable, interval } from 'rxjs';
 
 @Component({
   selector: 'todo-add',
@@ -14,8 +16,9 @@ export class TodoAddComponent implements OnInit {
     private status:any;
     statusList: any;
     private message = "";
+    private timerSubsciption;
 
-    constructor(private service: TodoServices){
+    constructor(private router:Router, private service: TodoServices){
         this.title = "";
         this.status = 0;
         this.statusList = [
@@ -28,9 +31,27 @@ export class TodoAddComponent implements OnInit {
         this.service.addTodo(3, f.value.title, f.value.status.id);
         console.log(this.service.getTodos());
         f.reset();
-        this.message = "Todo added successfully!"
+        this.message = "Todo added successfully!";
+
+        this.timerSubsciption = interval(2000).subscribe(
+            () => {
+                this.router.navigate(['/todo'])
+            },
+            (error: any) => {
+                console.log('error');
+            },
+            () => {
+                console.log('observable completed !');
+            }
+        ); 
       }
 
     ngOnInit() {
+    }
+
+    ngOnDestroy(): void {
+        //Called once, before the instance is destroyed.
+        //Add 'implements OnDestroy' to the class.
+        this.timerSubsciption.unsubscribe();
     }
 }
