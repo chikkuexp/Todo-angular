@@ -35,9 +35,14 @@ export class TodoComponent implements OnInit {
      this.todoList = this.service.getTodos();
    }
 
-   delete(id:number) {
-     this.service.deleteTodo(id);
-     this.todoList = this.service.getTodos();
+   delete(id: string) {
+      this.http.delete(this.url + '/' + id).subscribe(response => {
+        let todo = { _id : response.json()._id, title : response.json().title, status: response.json().status }
+        let index = this.todoList.indexOf(todo);
+        this.todoList.splice(index, 1);
+        console.log('Item deleted successfully!');
+        console.log(response.json());
+      });
    }
 
    update(item){

@@ -15,8 +15,8 @@
                 <td>{{item._id}}</td>
                 <td>{{item.title}}</td>
                 <td>{{(item.status == 0) ? 'Not Completed': 'Completed'}}</td>
-                <td><button type="button" class="btn btn-danger" (click)="delete(item.id)">Delete</button></td>
-                <td><a class="btn btn-primary" [routerLink]="['/todo/update', item.id]">Update</a></td>
+                <td><button type="button" class="btn btn-danger" (click)="delete(item._id)">Delete</button></td>
+                <td><a class="btn btn-primary" [routerLink]="['/todo/update', item._id]">Update</a></td>
                 </tr>
             </table>
         </ng-template>
