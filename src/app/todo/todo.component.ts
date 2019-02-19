@@ -1,5 +1,6 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { TodoServices } from './todos.service';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'todo',
@@ -15,11 +16,17 @@ export class TodoComponent implements OnInit {
   private todoList;
   public newTodo : string;
   private autoIncrement : number;
+  private url = "http://localhost:3000/api/todos";
 
-  constructor(private service: TodoServices) {
+  constructor(private http: Http, private service : TodoServices) {
+    // this.service = new TodoServices(http);
     this.newTodo = "";
     this.autoIncrement = 3;
-    this.todoList = service.getTodos();
+    this.todoList = this.service.getTodos();
+    this.http.get(this.url).subscribe(response => {
+      this.todoList = response.json();
+      console.log(response.json());
+    });
    }
 
    onSave(){
