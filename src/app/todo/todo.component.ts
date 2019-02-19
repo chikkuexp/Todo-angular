@@ -2,6 +2,7 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { TodoServices } from './todos.service';
 import { Http } from '@angular/http';
 import { Observable, interval } from 'rxjs';
+import { dbcommon } from '../common/database';
 
 @Component({
   selector: 'todo',
@@ -17,15 +18,15 @@ export class TodoComponent implements OnInit {
   private todoList;
   public newTodo : string;
   private autoIncrement : number;
-  private url = "http://localhost:3000/api/todos";
   private success = '';
 
   constructor(private http: Http, private service : TodoServices) {
+    console.log(dbcommon.todoapi);
     // this.service = new TodoServices(http);
     this.newTodo = "";
     this.autoIncrement = 3;
     this.todoList = this.service.getTodos();
-    this.http.get(this.url).subscribe(response => {
+    this.http.get(dbcommon.todoapi).subscribe(response => {
       this.todoList = response.json();
       console.log(response.json());
     });
@@ -38,7 +39,7 @@ export class TodoComponent implements OnInit {
    }
 
    delete(id: string) {
-      this.http.delete(this.url + '/' + id).subscribe(response => {
+      this.http.delete(dbcommon.todoapi + '/' + id).subscribe(response => {
         let todo = { _id : response.json()._id, title : response.json().title, status: response.json().status }
         let index = this.todoList.indexOf(todo);
         this.todoList.splice(index, 1);
