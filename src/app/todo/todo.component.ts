@@ -1,6 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { TodoServices } from './todos.service';
 import { Http } from '@angular/http';
+import { Observable, interval } from 'rxjs';
 
 @Component({
   selector: 'todo',
@@ -17,6 +18,7 @@ export class TodoComponent implements OnInit {
   public newTodo : string;
   private autoIncrement : number;
   private url = "http://localhost:3000/api/todos";
+  private success = '';
 
   constructor(private http: Http, private service : TodoServices) {
     // this.service = new TodoServices(http);
@@ -40,7 +42,20 @@ export class TodoComponent implements OnInit {
         let todo = { _id : response.json()._id, title : response.json().title, status: response.json().status }
         let index = this.todoList.indexOf(todo);
         this.todoList.splice(index, 1);
-        console.log('Item deleted successfully!');
+        this.success = 'Item deleted successfully!';
+
+        let timerSubsciption = interval(2000).subscribe(
+          () => {
+              timerSubsciption.unsubscribe();
+              this.success = "";
+          },
+          (error: any) => {
+              console.log('error');
+          },
+          () => {
+              console.log('observable completed !');
+          }
+      );
         console.log(response.json());
       });
    }
